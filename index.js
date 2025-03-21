@@ -17,7 +17,7 @@ app.use(cors({ // 新增：启用 CORS，允许特定源
 }));
 
 // 初始化 SQLite 数据库
-const db = new sqlite3.Database('chat.db', (err) => {
+const db = new sqlite3.Database('.data/chat.db', (err) => {
   if (err) console.error('数据库连接失败:', err.message);
   else console.log('数据库连接成功');
 });
@@ -132,7 +132,7 @@ wss.on('connection', (ws) => {
 });
 
 // 启动服务器
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 server.listen(PORT, () => {
   console.log(`服务器运行在端口 ${PORT}`);
 });
